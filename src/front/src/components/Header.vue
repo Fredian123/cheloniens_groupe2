@@ -18,42 +18,37 @@
 
 <template>
     <div class="Component">
-        <header :class="{headerIsHidden: headerIsHidden }">
-            <RouterLink to="/" class="appName">Web Templates</RouterLink>
-    
+        <header :class="{ headerIsHidden: headerIsHidden }">
+            <RouterLink to="/" class="appName">Suivi des Cheloniens</RouterLink>
+
             <nav class="navbar">
-                <button class="charAsIcon themeSwitch" title="Activer / Désactiver le mode sombre" type="button" role="switch" @click="switchTheme()">{{ appState.theme.value == "light" ? "🌙" : "🔆" }}</button>
-    
-                <div class="navDrawer-container"
-                    v-for="(cat, index) in appState.categories"
-                    @mouseenter="openDrawer(index)"
-                    @mouseleave="closeDrawer(index)"
-                    >
-                    <RouterLink class="navDrawerHandle navLink"
-                        :to="`/${cat.relUrl}`"
-                        >
-                        <span class="category">{{ cat.name }}</span><span class="charAsIcon" v-if="cat.components.length > 1"> ▿</span>
+                <!-- <button class="charAsIcon themeSwitch" title="Activer / Désactiver le mode sombre" type="button"
+                    role="switch" @click="switchTheme()">{{ appState.theme.value == "light" ? "🌙" : "🔆" }}
+                </button> -->
+
+                <!-- Catégorie : -->
+                <!-- <div class="navDrawer-container" @mouseenter="openDrawer(1)" @mouseleave="closeDrawer(1)">
+                    <RouterLink class="navDrawerHandle navLink" :to="`/subPage`">
+                        <span class="category">Nom Categorie</span>
+                        <span class="charAsIcon"> ▿</span>
                     </RouterLink>
-    
+
                     <Transition name="fade">
-                        <ul class="navDrawer"
-                            v-if="cat.components.length > 1"
-                            v-show="openedDrawerIndex == index"
-                            @mouseenter="openDrawer(index)"
-                            >
-                            <RouterLink class="navDrawerItem navLink"
-                                v-for="comp in cat.components"
-                                :to="`/${cat.relUrl}/${ comp.relUrl }`"
-                                >
-                                {{ comp.name }}.vue<span></span
-                            ></RouterLink>
+                        <ul class="navDrawer" v-show="openedDrawerIndex == 1" @mouseenter="openDrawer(1)">
+                            <RouterLink class="navDrawerItem navLink" :to="`/categorie/page`">Nom de la page
+                            </RouterLink>
                         </ul>
                     </Transition>
-                </div>
-                <RouterLink class="navLink" to="/">Home</RouterLink>
+                </div> -->
+                
+                <RouterLink class="navLink" to="/">J'ai vu une tortue !</RouterLink>
+                <RouterLink class="navLink" to="/">Accueil</RouterLink>
             </nav>
         </header>
-        <button class="hideHeader charAsIcon" title="Afficher / Masquer le bandeau de navigation" :class="{headerIsHidden : headerIsHidden }" @click="headerIsHidden = !headerIsHidden">{{ headerIsHidden ? "▽" : "△" }}</button>
+        <!-- <button class="hideHeader charAsIcon" title="Afficher / Masquer le bandeau de navigation"
+            :class="{ headerIsHidden: headerIsHidden }" @click="headerIsHidden = !headerIsHidden">{{ headerIsHidden ?
+                "▽" : "△" }}
+        </button> -->
     </div>
 </template>
 
@@ -66,13 +61,13 @@
 
     .Component {
         /* Vars */
-        
+
         --headerHeight: 70px;
 
         /* Color vars */
 
         --navDrawerBorder: transparent;
-        
+
         --linkNav: var(--textSub1);
         --linkNavHover: #3876d9;
         --linkNavDrawerHover: #3876d9;
@@ -80,10 +75,10 @@
 
         --btnBgNavHoverColored: #ecf2fc;
         --btnBgNavActiveColored: #bdd6ff;
-        
+
         .dark & {
             --navDrawerBorder: var(--dividerColor);
-            
+
             --linkNav: #e6e6e6;
             --linkNavHover: #42b883;
             --linkNavCurrent: #42b883;
@@ -102,7 +97,7 @@
         width: 100%;
         height: var(--headerHeight);
         padding: 15px 24px;
-        
+
         /* prop */
         background-color: var(--bg);
         box-shadow: var(--shadow);
@@ -147,18 +142,18 @@
             padding: 0 15px;
 
             /* prop */
-            
+
             /* content pos */
             display: flex;
             align-items: center;
-            
+
             /* content prop */
             color: var(--linkNav);
             font-size: var(--linkNavFontSize);
             text-decoration: none;
             border-radius: 50px;
-            transition:var(--transitionDefaults), background-color .2s;
-            
+            transition: var(--transitionDefaults), background-color .2s;
+
             &:hover {
                 color: var(--linkNavHover);
                 background-color: var(--btnBgNavHoverColored);
@@ -177,10 +172,10 @@
                 /* pos */
                 min-height: 40px;
                 padding: 10px 15px;
-                
+
                 /* prop */
-                transition:var(--transitionDefaults), color 0.25s;
-                
+                transition: var(--transitionDefaults), color 0.25s;
+
                 &:hover {
                     background-color: transparent;
                     color: var(--linkNavDrawerHover);
@@ -213,7 +208,7 @@
                 z-index: -1;
                 /* background-color: rgba(0, 0, 0, 0.083); */
             }
-            
+
             .navDrawer {
                 /* pos */
                 position: absolute;
@@ -222,7 +217,7 @@
                 width: max-content;
                 max-width: 300px;
                 z-index: 5;
-                
+
                 /* prop */
                 background-color: var(--bg);
                 border: 1px solid var(--navDrawerBorder);
@@ -247,6 +242,7 @@
                     z-index: -1;
                     /* background-color: rgba(0, 0, 0, 0.066); */
                 }
+
                 &::after {
                     /* Triangle */
                     position: absolute;
@@ -270,21 +266,21 @@
         top: calc(var(--headerHeight) + 10px);
         right: 10px;
         width: 30px;
-        height: 20px; 
+        height: 20px;
         padding-top: calc(2px * v-bind("headerIsHidden ? 2.5 : 1"));
-       
+
         /* prop */
         background-color: var(--bgTop1);
         transition: scale .3s, top .5s, var(--transitionDefaults);
-        
+
         &.headerIsHidden {
             top: 10px;
         }
-        
+
         &:active {
             transition: scale .1s, top .5s, var(--transitionDefaults);
         }
-        
+
         &:hover {
             background-color: var(--bgTop2);
         }

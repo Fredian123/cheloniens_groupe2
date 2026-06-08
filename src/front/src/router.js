@@ -6,54 +6,23 @@ import Home from "./Views/Home.vue";
 
 
 
-function addTemplatesToRoutes() {
-    appState.mainRoutes.forEach((route) => {
-        routes.push(route)
-    })
-
-    appState.categories.forEach((cat) => {
-        if (cat.components.length == 1) {
-            routes.push(
-                { path: `/${cat.relUrl}`, component: cat.components[0].component, meta: { title: cat.components[0].title } }
-            );
-        } else {
-            routes.push(
-                { path: `/${cat.relUrl}`, redirect: to => ({ path: `/${cat.relUrl}/${cat.components[0].relUrl}`, query: to.query }) }
-            );
-        }
-
-        cat.components.forEach(comp => {
-            routes.push(
-                { path: `/${cat.relUrl}/${comp.relUrl}`, component: comp.component, meta: { title: comp.title } }
-            );
-
-        })
-    });
-}
-
-
-
-// Routes :
-// / : Home
-// /TemplateCategory : Le premier template de chaque catégorie
-// /TemplateCategory/TemplateName : Une pour chaque template
-// else : 404
-
 const routes = [
     {
         path: "/",
         component: Home,
         name: "Accueil",
         meta: { title: `404 | ${appState.titleDefault}` }
+    },
+    {
+        // 404
+        path: "/:pathMatch(.*)*",
+        component: Error404,
+        name: "Error404",
+        meta: { title: `404 | ${appState.titleDefault}` },
     }
 ];
-routes.push({
-    // 404
-    path: "/:pathMatch(.*)*",
-    component: Error404,
-    name: "Error404",
-    meta: { title: `404 | ${appState.titleDefault}` },
-})
+routes.push(
+)
 
 const router = createRouter({
     history: createWebHistory(),
