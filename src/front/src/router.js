@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import appState from "@/appState.js";
 import Error404 from "@/Views/Error404.vue";
+import Home from "./Views/Home.vue";
 
 
 
@@ -38,8 +39,14 @@ function addTemplatesToRoutes() {
 // /TemplateCategory/TemplateName : Une pour chaque template
 // else : 404
 
-const routes = [];
-addTemplatesToRoutes();
+const routes = [
+    {
+        path: "/",
+        component: Home,
+        name: "Accueil",
+        meta: { title: `404 | ${appState.titleDefault}` }
+    }
+];
 routes.push({
     // 404
     path: "/:pathMatch(.*)*",

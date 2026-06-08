@@ -7,11 +7,15 @@ const __dirname = dirname(__filename);
 
 const createWindow = () => {
     const win = new BrowserWindow({
-        width: 800,
-        height: 600
+        // width: 800,
+        // height: 600
     })
 
-    win.loadFile(join(__dirname, "../front/dist/index.html"));
+    if (!app.isPackaged) {   // isPackaged is true if app was launched using the exe file
+        win.loadURL('http://localhost:5173');   // Development launches this to use hot reload from vite
+    } else {
+        win.loadFile(join(__dirname, "../front/dist/index.html"));
+    }
 }
 
 app.whenReady().then(() => {

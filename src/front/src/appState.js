@@ -1,7 +1,6 @@
 import { ref, watch } from "vue";
 
 import Home from "@/Views/Home.vue";
-import APP_VERSION from "./APP_VERSION.js";
 
 
 // --- Functions ---
@@ -69,14 +68,6 @@ export function initCssThemeVariables() {
     document.head.appendChild(style)
 }
 
-export function initLocalStorage() {
-    if (Boolean(localStorage.getItem("theme")) == true) {
-        appState.theme.value = localStorage.getItem("theme");
-    } else {
-        localStorage.setItem("theme", appState.theme.value);
-    }
-}
-
 function updateTheme() {
     localStorage.setItem("theme", appState.theme.value);
 }
@@ -94,8 +85,7 @@ export function switchTheme() {
 // --- Main ---
 
 const appState = {
-    APP_VERSION: APP_VERSION,
-    titleDefault: "Web Templates",
+    titleDefault: "Suivi des Cheloniens",
 
     cssThemeVariables: {
         // cssVarName: ["valueLight", "valueDark", "maybe3rdTheme?"]
@@ -135,24 +125,9 @@ const appState = {
         btnBgActive: ["#bdd6ff", "#9b9b9b"],
     },
 
-    theme: ref("dark"),
+    theme: ref("light"),
 
-    mainRoutes: [{ path: "/", component: Home, meta: { title: "Web Templates" } }],
-
-    // categories: [
-    //     {
-    //         name: "Boutons",
-    //         relUrl: "boutons",
-    //         components: [
-    //             {
-    //                 name: Boutons1,
-    //                 component: Component,
-    //                 relUrl: "boutons1",
-    //                 title: "Boutons1 | Web Templates",
-    //             },
-    //         ],
-    //     },
-    // ],
+    mainRoutes: [{ path: "/", component: Home, meta: { title: "Suivi des Cheloniens" } }],
 };
 
 const templatesModules = import.meta.glob("@/Views-Templates/**/*.vue", { eager: true });

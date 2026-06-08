@@ -1,8 +1,8 @@
 <script setup>
     import {onMounted} from "vue"
 
-    import Header from "./Views/components/Header.vue";
-    import Footer from "./Views/components/Footer.vue";
+    import Header from "./components/Header.vue";
+    import Footer from "./components/Footer.vue";
     import appState, { initCssThemeVariables } from "@/appState.js";
 
     onMounted(() => {

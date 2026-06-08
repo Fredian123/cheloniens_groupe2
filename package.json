@@ -7,9 +7,11 @@
   "type": "module",
   "main": "src/back/main.js",
   "scripts": {
-    "start": "electron-forge start",
+    "dev": "set NODE_ENV=development && concurrently \"npm run dev:vue\" \"npm run dev:electron\"",
+    "dev:vue": "cd src/front && npm run dev",
+    "dev:electron": "wait-on http://localhost:5173 && electron-forge start",
     "package": "electron-forge package",
-    "make": "cd ./src/front && npm run build && cd ../../ && npx electron-forge make"
+    "make": "set NODE_ENV=production cd ./src/front && npm run build && cd ../../ && npx electron-forge make"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1",
@@ -24,6 +26,8 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.11.2",
     "@electron-forge/plugin-fuses": "^7.11.2",
     "@electron/fuses": "^1.8.0",
-    "electron": "^42.3.3"
+    "concurrently": "^10.0.3",
+    "electron": "^42.3.3",
+    "wait-on": "^9.0.10"
   }
 }
