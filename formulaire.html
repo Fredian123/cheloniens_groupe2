@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Yay
+        </title>
+    </head>
+    <body style="text-align: center;">
+        <h1 style="color: green;">
+            Yay
+        </h1>
+        <p>
+          Click on the button to create
+          a form dynamically
+        </p>
+        <button onClick="GFG_Fun()">
+            click here
+        </button>
+        <p id="GFG_DOWN"></p>
+ <script>
+    var down = document.getElementById("GFG_DOWN");
+          
+    // Create a break line element
+    var br = document.createElement("br"); 
+    function GFG_Fun() {
+              
+    // Create a form dynamically
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "submit.php");
+
+    // Create an input element for the localisation
+    var localisation = document.createElement("input");
+    localisation.setAttribute("type", "text");
+    localisation.setAttribute("name", "localisation");
+    localisation.setAttribute("placeholder", "Localisation");
+
+     // Create an input element for date of observation
+     var date_observation = document.createElement("input");
+     date_observation.setAttribute("type", "date");
+     date_observation.setAttribute("name", "date_observation");
+     date_observation.setAttribute("placeholder", "Date d'observation");
+
+     // Create an input element for the meteo
+     var meteo = document.createElement("input");
+     meteo.setAttribute("type", "varchar(255)");
+     meteo.setAttribute("name", "meteo");
+     meteo.setAttribute("placeholder", "Météo");
+
+      // Create an input element for the number of turtles
+      var nombre_tortues = document.createElement("input");
+      nombre_tortues.setAttribute("type", "number");
+      nombre_tortues.setAttribute("name", "nombre_tortues");
+      nombre_tortues.setAttribute("placeholder", "Nombre de tortues");
+
+       // Create an input element for the depth
+       var profondeur = document.createElement("input");
+       profondeur.setAttribute("type", "number");
+       profondeur.setAttribute("name", "profondeur");
+       profondeur.setAttribute("placeholder", "Profondeur");
+
+       // Create an input element for the photo
+       var photo = document.createElement("input");
+       photo.setAttribute("type", "file");
+       photo.setAttribute("name", "photo");
+       photo.setAttribute("placeholder", "Photo");
+
+       // Create an input element for the comments
+       var commentaires = document.createElement("input");
+       commentaires.setAttribute("type", "text");
+       commentaires.setAttribute("name", "commentaires");
+       commentaires.setAttribute("placeholder", "Commentaires");
+
+                // create a submit button
+                var submit = document.createElement("input");
+                submit.setAttribute("type", "submit");
+                submit.setAttribute("value", "Submit");
+                
+                // Append the localisation input to the form
+                form.appendChild(localisation); 
+                
+                // Inserting a line break
+                form.appendChild(br.cloneNode()); 
+                
+                // Append the date of observation to the form
+                form.appendChild(date_observation); 
+                form.appendChild(br.cloneNode()); 
+                
+                // Append the meteo to the form
+                form.appendChild(meteo); 
+                form.appendChild(br.cloneNode()); 
+                
+                // Append the number of turtles to the form
+                form.appendChild(nombre_tortues); 
+                form.appendChild(br.cloneNode()); 
+                
+                // Append the depth to the form
+                form.appendChild(profondeur); 
+                form.appendChild(br.cloneNode()); 
+
+                // Append the photo to the form
+                form.appendChild(photo); 
+                form.appendChild(br.cloneNode()); 
+
+                // Append the comments to the form
+                form.appendChild(commentaires); 
+                form.appendChild(br.cloneNode()); 
+                
+                // Append the submit button to the form
+                form.appendChild(submit); 
+
+                document.getElementsByTagName("body")[0]
+               .appendChild(form);
+            }
+
+
+    document.getElementById('monFormulaire').addEventListener('submit', function(e) {
+    e.preventDefault(); // Empêche le rechargement de la page
+
+    const formData = new FormData(this);
+    
+    fetch('traitement_formulaire.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        // data contient la réponse du serveur (ex: "Succès" ou "Erreur")
+        alert(data);
+    })
+    .catch(error => console.error('Erreur:', error));
+});     
+        </script>
+    </body>
+</html>
