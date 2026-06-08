@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "license": "MIT",
   "author": "ICEA L3 SDN Group 2",
-  "description": "An app to recense chelonians in Martinique",
+  "description": "An app to gather the observation of chelonians in Martinique",
   "type": "module",
-  "main": "src/electron/main.js",
+  "main": "src/back/main.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "cd ./src/front && npm run build && cd ../../ && npx electron-forge make"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1",

@@ -11,7 +11,7 @@ const createWindow = () => {
         height: 600
     })
 
-    win.loadFile(join(__dirname, "../render/index.html"));
+    win.loadFile(join(__dirname, "../front/dist/index.html"));
 }
 
 app.whenReady().then(() => {

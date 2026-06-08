@@ -6,3 +6,11 @@ Group 2
 
 ### Get started
 - Clone the repo
+- Run `npm install` to install dependencies
+
+### Backlog
+
+
+## Ecosystem
+### Tech stack
+- Electron
